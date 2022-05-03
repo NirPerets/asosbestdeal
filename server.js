@@ -32,9 +32,12 @@ app.get('/getIls', (req, res) => {
     res.send({ ils : ilsPrice })
 })
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../asosbestdealclient/build', 'index.html'));
-  });
+if (process.env.NODE_ENV) {
+    app.use(express.static(path.resolve(process.cwd(), 'asosbestdealclient/build')))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(process.cwd(), 'asosbestdealclient/build/index.html'))
+    })
+}
 
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
