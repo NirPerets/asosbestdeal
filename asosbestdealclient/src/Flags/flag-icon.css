@@ -1,0 +1,93 @@
+.flag-icon-background {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+.flag-icon {
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  position: relative;
+  display: inline-block;
+  width: 1.33333333em;
+  line-height: 1em;
+}
+
+.flag-icon:before {
+  content: "\00a0";
+}
+
+.flag-icon.flag-icon-squared {
+  width: 1em;
+}
+
+.au {
+  background-image: url(./au.svg);
+}
+
+.cn {
+  background-image: url(./cn.svg);
+}
+
+.de {
+  background-image: url(./de.svg);
+}
+
+.dk {
+  background-image: url(./dk.svg);
+}
+.es {
+  background-image: url(./es.svg);
+}
+
+.fr {
+  background-image: url(./fr.svg);
+}
+
+.com {
+  background-image: url(./gb.svg);
+}
+
+.hk {
+  background-image: url(./hk.svg);
+}
+
+.il {
+  background-image: url(./il.svg);
+}
+
+.nl {
+  background-image: url(./nl.svg);
+}
+
+.nz {
+  background-image: url(./nz.svg);
+}
+
+.ru {
+  background-image: url(./ru.svg);
+}
+
+.se {
+  background-image: url(./se.svg);
+}
+
+.it {
+  background-image: url(./it.svg);
+}
+
+.us {
+  background-image: url(./us.svg);
+}
+
+.pl {
+  background-image: url(./pl.svg);
+}
+
+.row {
+  background-image: url(./tr.svg);
+}
+
+.cx {
+  background-image: url(./cx.svg);
+}
