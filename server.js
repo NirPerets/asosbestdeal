@@ -36,10 +36,6 @@ app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 })
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'asosbestdealclient', 'build', 'index.html'));
-});
-
 function setIlsPrice() {
     axios.get('https://v6.exchangerate-api.com/v6/90cfe31901cd0d8ddb38358d/latest/ILS').then(response => {
         fs.truncate('/ils.json', 0 , () => {})
