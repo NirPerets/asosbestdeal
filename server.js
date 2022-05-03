@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.resolve(__dirname, "./Client/build")));
+app.use(express.static(path.resolve(__dirname, "./asosbestdealclient/build")));
 
 app.post("/getImage", async (req,res) => {
     const url = await urlBuilder.getCustomUrl(req.body.url,"COM","GBP") // Get UK Url
@@ -35,6 +35,10 @@ app.get('/getIls', (req, res) => {
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
 })
+
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'asosbestdealclient', 'build', 'index.html'));
+});
 
 function setIlsPrice() {
     axios.get('https://v6.exchangerate-api.com/v6/90cfe31901cd0d8ddb38358d/latest/ILS').then(response => {
