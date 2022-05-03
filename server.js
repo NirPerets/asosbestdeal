@@ -13,7 +13,7 @@ const port = process.env.PORT || 8080
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.resolve(__dirname, "./Client/build")));
+app.use(express.static(path.resolve(__dirname, "./asosbestdealclient/build")));
 
 app.post("/getImage", async (req,res) => {
     const url = await urlBuilder.getCustomUrl(req.body.url,"COM","GBP") // Get UK Url
