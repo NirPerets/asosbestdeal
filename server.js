@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.resolve(__dirname, "./asosbestdealclient/build")));
+app.use(express.static(path.resolve(__dirname, "/asosbestdealclient/build")));
 
 app.post("/getImage", async (req,res) => {
     const url = await urlBuilder.getCustomUrl(req.body.url,"COM","GBP") // Get UK Url
@@ -45,7 +45,7 @@ function setIlsPrice() {
         fs.truncate('/ils.json', 0 , () => {})
         fs.writeFile('ils.json', JSON.stringify(response.data.conversion_rates), (err) => {  
             if(err) {console.log(err)}
-            else {console.log('Saved')}
+            else {console.log('Updated ILS')}
         })
     });
 }

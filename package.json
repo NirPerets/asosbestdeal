@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js && cd asosbestdealclient && npm start",
-    "build": "cd asosbestdealclient && npm run build" 
+    "start": "node server.js && cd asosbestdealclient && npm start"
   },
   "author": "",
   "license": "ISC",
