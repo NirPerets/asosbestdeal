@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.resolve(__dirname, "../asosbestdealclient/build")));
+app.use(express.static(path.resolve(__dirname, "./asosbestdealclient/build")));
 
 app.post("/getImage", async (req,res) => {
     const url = await urlBuilder.getCustomUrl(req.body.url,"COM","GBP") // Get UK Url
@@ -32,12 +32,9 @@ app.get('/getIls', (req, res) => {
     res.send({ ils : ilsPrice })
 })
 
-if (process.env.NODE_ENV) {
-    app.use(express.static(path.resolve(process.cwd(), 'asosbestdealclient/build')))
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(process.cwd(), 'asosbestdealclient/build/index.html'))
-    })
-}
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(process.cwd(), 'asosbestdealclient/build/index.html'))
+})
 
 app.listen(port, () => {
     console.log(`app listening at http://localhost:${port}`)
