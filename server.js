@@ -13,7 +13,11 @@ const port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.resolve(__dirname, "/asosbestdealclient/build")));
+
+app.use(express.static(path.resolve(process.cwd(), "client/build")));
+app.get('*', (req, res) => {
+    res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'))
+})
 
 app.post("/getImage", async (req,res) => {
     const url = await urlBuilder.getCustomUrl(req.body.url,"COM","GBP") // Get UK Url
@@ -30,10 +34,6 @@ app.post('/bulkFetch', async(req,res) => {
 app.get('/getIls', (req, res) => {
     const ilsPrice = JSON.parse(fs.readFileSync('./ils.json'));
     res.send({ ils : ilsPrice })
-})
-
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(process.cwd(), 'asosbestdealclient/build/index.html'))
 })
 
 app.listen(port, () => {
