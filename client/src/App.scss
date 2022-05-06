@@ -659,19 +659,22 @@ body {
 
 .header {
   width: 100%;
+  height: 25px;
   background: $main;
-  padding: 12px 15px;
   text-align: left;
   svg {fill: #ffffff;}
 }
 
 .footer {
   width: 100%;
+  height: 25px;
   background: $main;
   text-align: center;
   color: #ffffff;
-  padding: 10px;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .resultedCountry {

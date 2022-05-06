@@ -6,17 +6,21 @@ function App() {
   const [ils, setIls] = useState(0)
 
   useEffect(() => {
-    fetch('/getIls')
+    const options = {
+      method: 'GET',
+      "headers": { 'Content-Type': 'application/json' }
+    }
+    fetch('/getIls', options)
       .then(res => res.json())
       .then(data => {
+        console.log("Saved new ILS")
         setIls(data.ils)
       })
   }, [])
 
   return (
     <>
-      <div className="header">
-      </div>
+      <div className="header"></div>
       <Search ils={ ils } />  
       <div className='footer'>
         כל הזכויות שמורות 2022

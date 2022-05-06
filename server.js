@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 
 app.use(express.static(path.resolve(__dirname, "client", "build")));
 app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'))
 })
 
 app.post("/getImage", async (req,res) => {
