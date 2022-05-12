@@ -71,7 +71,7 @@ const getProductImage = async (url) => {
         product.name = res.data.variants[0].name
     })       
     .catch(err => {
-        if(err) {}
+        if(err) console.log(err)
     })
     return product
 }
