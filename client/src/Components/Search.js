@@ -2,7 +2,8 @@ import { Component } from "react";
 import Check from '../Icons/check.svg'
 import Remove from '../Icons/remove.svg'
 import Results from './Result'
-import Icon__ATC from "../Icons/Icon__ATC";
+import Icon__Arrowleft from '../Icons/Icon__Arrowleft'
+import Fade from 'react-reveal/Fade';
 
 const countries = {
     us: "ארצות הברית",
@@ -52,7 +53,6 @@ class Search extends Component {
             })
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
                 this.setState({ fullResults : data})
             })
     }
@@ -114,29 +114,26 @@ class Search extends Component {
         this.setState({products: tempArr});
     }
 
-    render() {
-        if(this.state.ils == 0) {
-            return(
-                <div className="resultsPage">
-                    <div className="loader"></div>
-                </div>
-            )
-        }
+    componentDidMount() {
+        console.log(this.props.ils)
+    }
 
+    render() {
         if(!this.state.showResults) {
             return(
                 <>
-                    <div className="searchPage_container">
-                        <div className="searchPage">
+                    <div className="searchPage_container" id="calculator">
+                    <Fade bottom>
+                        <div className="searchPage section">
                             <div className="searchPageGrid">
                                 <div className="right-side">
                                     <form onSubmit={this.addProduct}>
-                                        <label>הדבק את הקישור למוצר (מקסימום 8)</label>
+                                        <label>הדבק את הלינק למוצר (מקסימום 8)</label>
                                         <div className="group">
                                             {
                                                 this.state.max ?
                                                 (<p className="maxedBtn" disabled>הגעתה למקסימום</p>) :
-                                                (<button disabled={this.state.addingProduct}>{ Icon__ATC }</button>)
+                                                (<button disabled={this.state.addingProduct}>הוסף לסל</button>)
                                             }
                                             <input id="productInput" onChange={this.handleInput} placeholder="...https://www.asos.com" type="text" />
                                         </div>
@@ -147,8 +144,11 @@ class Search extends Component {
                                     </form>
 
                                     <div className="buttonCont">
-                                        <button onClick={this.fetchAll} className="calcButton">
-                                            הראה לי תוצאות
+                                        <button onClick={this.fetchAll} className="btn btn__primary">
+                                            <p>הראה לי תוצאות</p>
+                                            <span className='icon'>
+                                                { Icon__Arrowleft }
+                                            </span>
                                         </button>
                                         {
                                             this.state.bagError ?
@@ -179,6 +179,7 @@ class Search extends Component {
                                 </div>
                             </div>
                         </div>
+                        </Fade>
                     </div>
                 </>
             )
