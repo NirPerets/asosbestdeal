@@ -6,7 +6,7 @@ import Hero from './Components/Hero';
 import Mockups from './Components/Mockups';
 import Search from './Components/Search'
 import VideoSection from './Components/VideoSection';
-
+import ReactGA from 'react-ga'
 function App() {
   const [ils, setIls] = useState()
 
@@ -22,6 +22,8 @@ function App() {
       .then(data => {
         setIls(data.ils)
       })
+
+      ReactGA.pageview(window.location.pathname);
   }, [])
 
   if(ils == null) 
