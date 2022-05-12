@@ -16,7 +16,10 @@ function App() {
       "headers": { 'Content-Type': 'application/json' }
     }
     fetch('/getIls', options)
-      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        return res.json()
+      })
       .then(data => {
         console.log(data)
         setIls(data.ils)
