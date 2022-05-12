@@ -20,7 +20,6 @@ function App() {
     fetch('/getIls', options)
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         setIls(data.ils)
       })
   }, [])

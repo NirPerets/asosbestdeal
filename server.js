@@ -22,6 +22,7 @@ app.get('*', (req, res) => {
 app.post("/getImage", async (req,res) => {
     const url = await urlBuilder.getCustomUrl(req.body.url,"COM","GBP") // Get UK Url
     const product = await fetchProduct.getProductImage(url);
+    console.log(product)
     res.send(product);
 })
 
@@ -33,7 +34,6 @@ app.post('/bulkFetch', async(req,res) => {
 
 app.post('/getIls', (req, res) => {
     const ilsPrice = JSON.parse(fs.readFileSync('./ils.json'));
-    console.log(ilsPrice)
     res.send({ ils : ilsPrice })
 })
 
