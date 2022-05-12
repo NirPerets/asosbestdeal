@@ -8,7 +8,7 @@ import Search from './Components/Search'
 import VideoSection from './Components/VideoSection';
 
 function App() {
-  const [ils, setIls] = useState(0)
+  const [ils, setIls] = useState()
 
   useEffect(() => {
     const options = {
@@ -26,7 +26,7 @@ function App() {
       })
   }, [])
 
-  if(ils == 0) 
+  if(ils == null) 
     return(
       <>
         <div className="header"></div>
