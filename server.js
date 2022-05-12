@@ -20,6 +20,7 @@ app.get('*', (req, res) => {
 })
 
 app.post("/getImage", async (req,res) => {
+    console.log('getImage')
     const url = await urlBuilder.getCustomUrl(req.body.url,"COM","GBP") // Get UK Url
     const product = await fetchProduct.getProductImage(url);
     console.log(product)

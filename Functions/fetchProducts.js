@@ -4,7 +4,7 @@ const fs = require('fs')
 const fetchProduct = async (url) => {
     let product = {};
     let sizes = []
-
+    console.log(url)
     await axios.get(url)
         .then((res) =>  {
             product.price = res.data.price.current.value
