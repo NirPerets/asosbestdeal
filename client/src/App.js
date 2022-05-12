@@ -16,7 +16,10 @@ function App() {
       "headers": { 'Content-Type': 'application/json' }
     }
     fetch('/getIls', options)
-      .then(res => res.json())
+      .then(res => {
+        res.json()
+        console.log('asads - ', res)
+      })
       .then(data => {
         console.log("Saved new ILS")
         setIls(data.ils)
@@ -27,13 +30,10 @@ function App() {
     return(
       <>
         <div className="header"></div>
-        <Header />
           <div className="loader__container">
               <div className="loader"></div>
           </div> 
-          <div className='footer'>
-            כל הזכויות שמורות 2022
-        </div>
+          <div className='footer'>כל הזכויות שמורות 2022</div>
       </>
     )
   return (
@@ -45,9 +45,7 @@ function App() {
       <VideoSection />
       <Benefits />
       <Search ils={ ils } />  
-      <div className='footer'>
-        כל הזכויות שמורות 2022
-      </div>
+      <div className='footer'>כל הזכויות שמורות 2022</div>
     </>
   );
 }
