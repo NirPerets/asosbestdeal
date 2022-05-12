@@ -63,6 +63,7 @@ const fetchCountry = async (country, ils) => {
 
 const getProductImage = async (url) => {
     let product = {};
+    console.log('getImage')
     await axios.get(url)
     .then((res) =>  {
         console.log(res)
