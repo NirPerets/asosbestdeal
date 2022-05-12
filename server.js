@@ -33,7 +33,7 @@ app.post('/bulkFetch', async(req,res) => {
 
 app.get('/getIls', (req, res) => {
     const ilsPrice = JSON.parse(fs.readFileSync('./ils.json'));
-    res.send({ ils : ilsPrice })
+    res.send({ ilsPrice })
 })
 
 app.listen(port, () => {

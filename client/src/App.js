@@ -11,15 +11,11 @@ function App() {
   const [ils, setIls] = useState()
 
   useEffect(() => {
-    const options = {
-      method: 'GET',
-      "headers": { 
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-       }
-    }
-    fetch('/getIls', options)
-      .then(res => res.json())
+    fetch('/getIls')
+      .then(res => {
+        console.log(res)
+        res.json()
+      })
       .then(data => {
         console.log(data)
         setIls(data.ils)
