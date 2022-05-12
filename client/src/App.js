@@ -13,7 +13,10 @@ function App() {
   useEffect(() => {
     const options = {
       method: 'GET',
-      "headers": { 'Content-Type': 'application/json' }
+      "headers": { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
     }
     fetch('/getIls', options)
       .then(res => {
