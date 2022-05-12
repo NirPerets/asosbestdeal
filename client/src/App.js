@@ -11,7 +11,13 @@ function App() {
   const [ils, setIls] = useState()
 
   useEffect(() => {
-    fetch('/getIls')
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch('/getIls', options)
       .then(res => {
         console.log(res)
         res.json()

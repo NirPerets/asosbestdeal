@@ -31,7 +31,7 @@ app.post('/bulkFetch', async(req,res) => {
         .then(response => res.send(response));
 })
 
-app.get('/getIls', (req, res) => {
+app.post('/getIls', (req, res) => {
     const ilsPrice = JSON.parse(fs.readFileSync('./ils.json'));
     console.log(ilsPrice)
     res.send({ ils : ilsPrice })
