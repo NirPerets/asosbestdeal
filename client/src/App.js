@@ -18,10 +18,7 @@ function App() {
       }
     }
     fetch('/getIls', options)
-      .then(res => {
-        console.log(res)
-        res.json()
-      })
+      .then(res => res.json())
       .then(data => {
         console.log(data)
         setIls(data.ils)
