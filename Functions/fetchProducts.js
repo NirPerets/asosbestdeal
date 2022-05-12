@@ -65,6 +65,7 @@ const getProductImage = async (url) => {
     let product = {};
     await axios.get(url)
     .then((res) =>  {
+        console.log(res)
         product.image = res.data.media.images[0]
         product.name = res.data.variants[0].name
     })       
