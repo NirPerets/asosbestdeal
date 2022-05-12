@@ -59,9 +59,11 @@ const buildAllCountriesUrls = async (urls) => {
 }
 
 const getCustomUrl = (product_url,country,currency) => {
+    console.log('get url')
     let productID = product_url.split('/');
+    console.log(productID)
     productID = productID[productID.length-1].split('?')[0]; // Get Product ID From link
-
+    console.log(productID)
     let url = baseUrl + productID + 
         '?store=' + country +
         '&currency=' + currency;

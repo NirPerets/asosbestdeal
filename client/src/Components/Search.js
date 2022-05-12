@@ -114,10 +114,6 @@ class Search extends Component {
         this.setState({products: tempArr});
     }
 
-    componentDidMount() {
-        console.log(this.props.ils)
-    }
-
     render() {
         if(!this.state.showResults) {
             return(
