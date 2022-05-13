@@ -1,5 +1,6 @@
 const axios = require('axios');
 const fs = require('fs')
+import fetch from 'node-fetch';
 
 const fetchProduct = async (url) => {
     let product = {};
