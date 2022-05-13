@@ -1,6 +1,5 @@
 const axios = require('axios');
 const fs = require('fs')
-import fetch from 'node-fetch';
 
 const fetchProduct = async (url) => {
     let product = {};
@@ -64,10 +63,9 @@ const fetchCountry = async (country, ils) => {
 
 const getProductImage = async (url) => {
     let product = {};
-    await fetch(url)
+    await axios.get(url)
     .then(res => {
         console.log(res)
-        res.json()
         product.image = res.data.media.images[0]
         product.name = res.data.variants[0].name
     })
