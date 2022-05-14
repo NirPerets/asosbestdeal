@@ -1,4 +1,4 @@
-const baseUrl = 'product/catalogue/v3/products/'
+const baseUrl = 'https://api.asos.com/product/catalogue/v3/products/'
 
 const countries = [
     { code: "US", currency: "USD", country: "United States" }, 

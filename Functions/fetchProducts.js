@@ -1,14 +1,7 @@
 const axios = require('axios');
 const res = require('express/lib/response');
 const fs = require('fs')
-
-const AsosClient = axios.create({
-    baseURL: 'https://api.asos.com/',
-    timeout: 1000,
-    headers: {
-        'Content-Type': 'application/json'
-    }
-});
+const fetch = require('node-fetch')
 
 const fetchProduct = async (url) => {
     let product = {};
@@ -75,10 +68,11 @@ const getProductImage = async (url) => {
     const options = { 
         headers: { 'User-Agent' : 'Chrome/62.0.3202.84' }
     }
-    const response = await AsosClient.get(url)
-    console.log(response)
 
-    /*await axios.get(url, options)
+    const response = await fetch(url)
+    console.log(response)
+    
+    await axios.get(url, options)
     .then(res => {
         console.log(res)
         product.image = res.data.media.images[0]
@@ -86,7 +80,7 @@ const getProductImage = async (url) => {
     })
     .catch(err => {
         console.log(err)
-    })*/
+    })
     return product
 }
 
