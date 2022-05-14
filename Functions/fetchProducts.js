@@ -67,7 +67,6 @@ const getProductImage = async (url) => {
     const options = { 
         headers: { 'User-Agent' : 'Chrome/62.0.3202.84' }
     }
-    console.log(url)
     await axios.get(url, options)
     .then(res => {
         console.log(res)
@@ -76,7 +75,6 @@ const getProductImage = async (url) => {
     })
     .catch(err => {
         console.log(err)
-        return {}
     })
     return product
 }
