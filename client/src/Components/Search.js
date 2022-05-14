@@ -67,7 +67,10 @@ class Search extends Component {
         } else {
             this.setState({searchError: false})
         }
-        await this.setState({addingProduct: true})
+        await this.setState({
+            connectionError: false, 
+            addingProduct : true 
+        })
         fetch('/getImage', {
             method: "POST",
             headers: {
@@ -84,6 +87,10 @@ class Search extends Component {
             return res.json()
         })
             .then(async(data) => {
+                if(data == null) {
+                    this.setState({ connectionError : true})
+                    return
+                }
                 if(data) {
                     const product = {
                         url: this.state.url,

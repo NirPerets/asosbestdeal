@@ -64,7 +64,11 @@ const fetchCountry = async (country, ils) => {
 
 const getProductImage = async (url) => {
     let product = {};
-    await axios.get(url, { timeout : 10 })
+    const options = { 
+        headers: { 'User-Agent' : 'Chrome/62.0.3202.84' },
+        timeout : 15
+    }
+    await axios.get(url, options)
     .then(res => {
         console.log(res)
         product.image = res.data.media.images[0]
