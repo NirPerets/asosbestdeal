@@ -1,7 +1,7 @@
 const axios = require('axios');
 const res = require('express/lib/response');
 const fs = require('fs')
-const fetch = require('node-fetch')
+import fetch from 'node-fetch'
 
 const fetchProduct = async (url) => {
     let product = {};
@@ -71,7 +71,7 @@ const getProductImage = async (url) => {
 
     const response = await fetch(url)
     console.log(response)
-    
+
     await axios.get(url, options)
     .then(res => {
         console.log(res)
