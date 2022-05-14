@@ -65,8 +65,7 @@ const fetchCountry = async (country, ils) => {
 const getProductImage = async (url) => {
     let product = {};
     const options = { 
-        headers: { 'User-Agent' : 'Chrome/62.0.3202.84' },
-        timeout : 15
+        headers: { 'User-Agent' : 'Chrome/62.0.3202.84' }
     }
     await axios.get(url, options)
     .then(res => {
