@@ -64,7 +64,6 @@ const fetchCountry = async (country, ils) => {
 
 const getProductImage = async (url) => {
     let product = {};
-    let response = await axios.get(url)
     await axios.get(url, { timeout : 10 })
     .then(res => {
         console.log(res)
@@ -73,7 +72,7 @@ const getProductImage = async (url) => {
     })
     .catch(err => {
         console.log(err)
-        return product
+        return {}
     })
     return product
 }

@@ -77,7 +77,7 @@ class Search extends Component {
                 url: this.state.url,
             })
         }).then(res => {
-            if(res.status == 400) {
+            if(res.status != 200) {
                 this.setState({ connectionError : true })
                 return false
             }
