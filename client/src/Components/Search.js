@@ -33,6 +33,7 @@ class Search extends Component {
         max: false,
         searchError: false,
         bagError: false,
+        connectionError: false
     }
 
     fetchAll = () => {
@@ -75,20 +76,28 @@ class Search extends Component {
             body: JSON.stringify({
                 url: this.state.url,
             })
-        }).then(res => res.json())
+        }).then(res => {
+            if(res.status == 400) {
+                this.setState({ connectionError : true })
+                return false
+            }
+            return res.json()
+        })
             .then(async(data) => {
-                const product = {
-                    url: this.state.url,
-                    image: data.image.url,
-                    name: data.name,
-                }
-                this.setState(prevState => ({
-                    products: [...prevState.products,product],
-                }));
-                await this.setState({addingProduct: false})
-                this.setState({url: ""})
-                if(this.state.products.length == 8) {
-                    this.setState({max: true})
+                if(data) {
+                    const product = {
+                        url: this.state.url,
+                        image: data.image.url,
+                        name: data.name,
+                    }
+                    this.setState(prevState => ({
+                        products: [...prevState.products,product],
+                    }));
+                    await this.setState({addingProduct: false})
+                    this.setState({url: ""})
+                    if(this.state.products.length == 8) {
+                        this.setState({max: true})
+                    }
                 }
             })
     }
@@ -136,6 +145,10 @@ class Search extends Component {
                                         {
                                             this.state.searchError ? 
                                             (<p className="error">קישור ריק או קישור לא מאסוס</p>) : (<></>)
+                                        }
+                                        {
+                                            this.state.connectionError ?
+                                            (<p className="error">בעיית שרת, נסה שוב</p>) : (<></>)
                                         }
                                     </form>
 

@@ -1,4 +1,5 @@
 const axios = require('axios');
+const res = require('express/lib/response');
 const fs = require('fs')
 
 const fetchProduct = async (url) => {
@@ -64,13 +65,15 @@ const fetchCountry = async (country, ils) => {
 const getProductImage = async (url) => {
     let product = {};
     let response = await axios.get(url)
-    console.log(response.data)
-    console.log(response.status)
-    await axios.get(url)
+    await axios.get(url, { timeout : 10 })
     .then(res => {
         console.log(res)
         product.image = res.data.media.images[0]
         product.name = res.data.variants[0].name
+    })
+    .catch(err => {
+        console.log(err)
+        return product
     })
     return product
 }
