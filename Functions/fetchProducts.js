@@ -1,6 +1,7 @@
 const axios = require('axios');
 const res = require('express/lib/response');
 const fs = require('fs')
+const request = require('request')
 
 const fetchProduct = async (url) => {
     let product = {};
@@ -68,6 +69,13 @@ const getProductImage = async (url) => {
         headers: { 'User-Agent' : 'Chrome/62.0.3202.84' }
     }
     console.log('Getting Image')
+    request({
+        'url': url,
+        'method': "GET",
+        'proxy':'https://localhost:8080'
+    }, (err, res, body) => {
+        console.log(res)
+    })
     await axios.get(url, options)
     .then(res => {
         console.log(res)
