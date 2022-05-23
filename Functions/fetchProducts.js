@@ -64,6 +64,7 @@ const fetchCountry = async (country, ils) => {
 }
 
 const getProductImage = async (url) => {
+    let product = {}
     var xhr = new XMLHttpRequest()
     xhr.open("GET", url)
 
@@ -78,7 +79,7 @@ const getProductImage = async (url) => {
         console.log(xhr.responseText);
     }};
 
-    xhr.send()
+    await xhr.send()
     
     return product
 }
