@@ -66,16 +66,12 @@ const fetchCountry = async (country, ils) => {
 const getProductImage = async (url) => {
     let product = {};
     const options = { 
-        headers: { 'User-Agent' : 'Chrome/62.0.3202.84' }
+        headers: { 'User-Agent' : 'Chrome/62.0.3202.84' },
+        responseType: 'stream',
+        method: 'get'
     }
     console.log('Getting Image')
-    request({
-        'url': url,
-        'method': "GET",
-        'proxy':'https://localhost:8080'
-    }, (err, res, body) => {
-        console.log(res)
-    })
+
     await axios.get(url, options)
     .then(res => {
         console.log(res)
