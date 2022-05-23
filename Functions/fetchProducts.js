@@ -66,9 +66,14 @@ const fetchCountry = async (country, ils) => {
 const getProductImage = async (url) => {
     let product = {};
     const options = { 
-        headers: { 'User-Agent' : 'Chrome/62.0.3202.84' },
-        responseType: 'stream',
-        method: 'get'
+        headers: { 
+            'Connection' : 'keep-alive',
+            'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+            'Upgrade-Insecure-Requests' : '1',
+            'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language' : "en-US,en;q=0.9",
+            "Accept-Encodin" : "gzip, defalte"
+        }
     }
     console.log('Getting Image')
 
