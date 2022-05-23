@@ -64,9 +64,9 @@ const getCustomUrl = (product_url,country,currency) => {
     let url = baseUrl + productID + 
         '?store=' + country
         
-    if(!currency)
+    if(currency)
         url += '&currency=' + currency
-        
+
     return url;
 }
 
