@@ -62,9 +62,11 @@ const getCustomUrl = (product_url,country,currency) => {
     let productID = product_url.split('/');
     productID = productID[productID.length-1].split('?')[0]; // Get Product ID From link
     let url = baseUrl + productID + 
-        '?store=' + country +
-        '&currency=' + currency;
-
+        '?store=' + country
+        
+    if(!currency)
+        url += '&currency=' + currency
+        
     return url;
 }
 
