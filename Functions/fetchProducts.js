@@ -67,12 +67,10 @@ const getProductImage = async (url) => {
     var xhr = new XMLHttpRequest()
     xhr.open("GET", url)
 
-    xhr.setRequestHeader("Connection", "keep-alive");
     xhr.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
     xhr.setRequestHeader("Upgrade-Insecure-Requests", "1");
     xhr.setRequestHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
     xhr.setRequestHeader("Accept-Language", "en-US,en;q=0.9");
-    xhr.setRequestHeader("Accept-Encoding", "gzip, deflate");
 
     xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
@@ -82,28 +80,6 @@ const getProductImage = async (url) => {
 
     xhr.send()
     
-    let product = {};
-    const options = { 
-        headers: { 
-            'Connection' : 'keep-alive',
-            'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
-            'Upgrade-Insecure-Requests' : '1',
-            'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Accept-Language' : "en-US,en;q=0.9",
-            "Accept-Encodin" : "gzip, defalte"
-        }
-    }
-    console.log('Getting Image')
-
-    await axios.get(url, options)
-    .then(res => {
-        console.log(res.data)
-        product.image = res.data.media.images[0]
-        product.name = res.data.variants[0].name
-    })
-    .catch(err => {
-        console.log(err)
-    })
     return product
 }
 
