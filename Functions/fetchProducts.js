@@ -77,11 +77,10 @@ const getProductImage = async (url) => {
     if (xhr.readyState === 4) {
         console.log(xhr.status);
         console.log(xhr.responseText);
+        return xhr
     }};
 
-    await xhr.send()
-    
-    return product
+    xhr.send()
 }
 
 module.exports.fetchProduct = fetchProduct;
