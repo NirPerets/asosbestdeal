@@ -1,10 +1,11 @@
 const axios = require('axios');
+const res = require('express/lib/response');
 const fs = require('fs')
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const fetchProduct = async (url) => {
     let product = {};
     let sizes = []
-
     await axios.get(url)
         .then((res) =>  {
             product.price = res.data.price.current.value
@@ -63,15 +64,17 @@ const fetchCountry = async (country, ils) => {
 }
 
 const getProductImage = async (url) => {
-    let product = {};
-    await axios.get(url)
-    .then((res) =>  {
-        product.image = res.data.media.images[0]
-        product.name = res.data.variants[0].name
-    })       
-    .catch(err => {
-        if(err) {}
-    })
+    let product = {}
+    const options = {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+        }
+    }
+
+    await axios.get(url, options)
+    .then(res => console.log(res))
+
     return product
 }
 

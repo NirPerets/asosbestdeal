@@ -2,7 +2,8 @@ import { Component } from "react";
 import Check from '../Icons/check.svg'
 import Remove from '../Icons/remove.svg'
 import Results from './Result'
-import Icon__ATC from "../Icons/Icon__ATC";
+import Icon__Arrowleft from '../Icons/Icon__Arrowleft'
+import Fade from 'react-reveal/Fade';
 
 const countries = {
     us: "ארצות הברית",
@@ -32,6 +33,7 @@ class Search extends Component {
         max: false,
         searchError: false,
         bagError: false,
+        connectionError: false
     }
 
     fetchAll = () => {
@@ -52,7 +54,6 @@ class Search extends Component {
             })
         }).then(res => res.json())
             .then(data => {
-                console.log(data)
                 this.setState({ fullResults : data})
             })
     }
@@ -66,7 +67,10 @@ class Search extends Component {
         } else {
             this.setState({searchError: false})
         }
-        await this.setState({addingProduct: true})
+        await this.setState({
+            connectionError: false, 
+            addingProduct : true 
+        })
         fetch('/getImage', {
             method: "POST",
             headers: {
@@ -75,20 +79,32 @@ class Search extends Component {
             body: JSON.stringify({
                 url: this.state.url,
             })
-        }).then(res => res.json())
+        }).then(res => {
+            if(res.status != 200) {
+                this.setState({ connectionError : true })
+                return false
+            }
+            return res.json()
+        })
             .then(async(data) => {
-                const product = {
-                    url: this.state.url,
-                    image: data.image.url,
-                    name: data.name,
+                if(data == null) {
+                    this.setState({ connectionError : true})
+                    return
                 }
-                this.setState(prevState => ({
-                    products: [...prevState.products,product],
-                }));
-                await this.setState({addingProduct: false})
-                this.setState({url: ""})
-                if(this.state.products.length == 8) {
-                    this.setState({max: true})
+                if(data) {
+                    const product = {
+                        url: this.state.url,
+                        image: data.image.url,
+                        name: data.name,
+                    }
+                    this.setState(prevState => ({
+                        products: [...prevState.products,product],
+                    }));
+                    await this.setState({addingProduct: false})
+                    this.setState({url: ""})
+                    if(this.state.products.length == 8) {
+                        this.setState({max: true})
+                    }
                 }
             })
     }
@@ -115,28 +131,21 @@ class Search extends Component {
     }
 
     render() {
-        if(this.state.ils == 0) {
-            return(
-                <div className="resultsPage">
-                    <div className="loader"></div>
-                </div>
-            )
-        }
-
         if(!this.state.showResults) {
             return(
                 <>
-                    <div className="searchPage_container">
-                        <div className="searchPage">
+                    <div className="searchPage_container" id="calculator">
+                    <Fade bottom>
+                        <div className="searchPage section">
                             <div className="searchPageGrid">
                                 <div className="right-side">
                                     <form onSubmit={this.addProduct}>
-                                        <label>הדבק את הקישור למוצר (מקסימום 8)</label>
+                                        <label>הדבק את הלינק למוצר (מקסימום 8)</label>
                                         <div className="group">
                                             {
                                                 this.state.max ?
                                                 (<p className="maxedBtn" disabled>הגעתה למקסימום</p>) :
-                                                (<button disabled={this.state.addingProduct}>{ Icon__ATC }</button>)
+                                                (<button disabled={this.state.addingProduct}>הוסף לסל</button>)
                                             }
                                             <input id="productInput" onChange={this.handleInput} placeholder="...https://www.asos.com" type="text" />
                                         </div>
@@ -144,11 +153,18 @@ class Search extends Component {
                                             this.state.searchError ? 
                                             (<p className="error">קישור ריק או קישור לא מאסוס</p>) : (<></>)
                                         }
+                                        {
+                                            this.state.connectionError ?
+                                            (<p className="error">בעיית שרת, נסה שוב</p>) : (<></>)
+                                        }
                                     </form>
 
                                     <div className="buttonCont">
-                                        <button onClick={this.fetchAll} className="calcButton">
-                                            הראה לי תוצאות
+                                        <button onClick={this.fetchAll} className="btn btn__primary">
+                                            <p>הראה לי תוצאות</p>
+                                            <span className='icon'>
+                                                { Icon__Arrowleft }
+                                            </span>
                                         </button>
                                         {
                                             this.state.bagError ?
@@ -179,6 +195,7 @@ class Search extends Component {
                                 </div>
                             </div>
                         </div>
+                        </Fade>
                     </div>
                 </>
             )

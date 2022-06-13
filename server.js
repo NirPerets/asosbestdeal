@@ -4,7 +4,7 @@ const axios      = require('axios');
 const fs         = require('fs')
 const cron       = require('node-cron')
 const path       = require('path')
-
+const cors       = require('cors')
 const urlBuilder   = require('./Functions/getUrls')
 const fetchProduct = require('./Functions/fetchProducts');
 
@@ -13,6 +13,7 @@ const port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors())
 
 app.use(express.static(path.resolve(__dirname, "client", "build")));
 app.get('*', (req, res) => {
@@ -20,9 +21,14 @@ app.get('*', (req, res) => {
 })
 
 app.post("/getImage", async (req,res) => {
-    const url = await urlBuilder.getCustomUrl(req.body.url,"COM","GBP") // Get UK Url
+    const url = await urlBuilder.getCustomUrl(req.body.url,"COM") // Get UK Url
+    console.log(url)
     const product = await fetchProduct.getProductImage(url);
-    res.send(product);
+    
+    if(product == {}) 
+       res.status(400).send({})
+
+    res.send('ok');
 })
 
 app.post('/bulkFetch', async(req,res) => {
@@ -31,7 +37,7 @@ app.post('/bulkFetch', async(req,res) => {
         .then(response => res.send(response));
 })
 
-app.get('/getIls', (req, res) => {
+app.post('/getIls', (req, res) => {
     const ilsPrice = JSON.parse(fs.readFileSync('./ils.json'));
     res.send({ ils : ilsPrice })
 })
