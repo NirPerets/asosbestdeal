@@ -3,7 +3,6 @@ import Check from '../Icons/check.svg'
 import Remove from '../Icons/remove.svg'
 import Results from './Result'
 import Icon__Arrowleft from '../Icons/Icon__Arrowleft'
-import Fade from 'react-reveal/Fade';
 
 const countries = {
     us: "ארצות הברית",
@@ -135,7 +134,6 @@ class Search extends Component {
             return(
                 <>
                     <div className="searchPage_container" id="calculator">
-                    <Fade bottom>
                         <div className="searchPage section">
                             <div className="searchPageGrid">
                                 <div className="right-side">
@@ -195,7 +193,6 @@ class Search extends Component {
                                 </div>
                             </div>
                         </div>
-                        </Fade>
                     </div>
                 </>
             )

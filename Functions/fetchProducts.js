@@ -1,7 +1,6 @@
 const axios = require('axios');
 const res = require('express/lib/response');
 const fs = require('fs')
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
 const fetchProduct = async (url) => {
     let product = {};

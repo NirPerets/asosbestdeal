@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.scss';
 import Benefits from './Components/Benefits';
 import Header from './Components/Header';
@@ -7,6 +7,7 @@ import Mockups from './Components/Mockups';
 import Search from './Components/Search'
 import VideoSection from './Components/VideoSection';
 import ReactGA from 'react-ga'
+
 function App() {
   const [ils, setIls] = useState()
 

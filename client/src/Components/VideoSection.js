@@ -1,9 +1,6 @@
-import Fade from 'react-reveal/Fade';
-
 function VideoSection() {
     return(
         <div className="video__wrapper">
-            <Fade bottom>
             <div className="video">
                 <iframe
                 className="desktop__video" 
@@ -21,7 +18,6 @@ function VideoSection() {
                 </iframe>    
                 <p>החלפת מדינה באפליקציה ובאתר אסוס</p>
             </div>
-            </Fade>
         </div>
     )
 }

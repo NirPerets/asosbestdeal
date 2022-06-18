@@ -4,11 +4,9 @@ import Icon__Rocket from '../Icons/Icon__Rocket'
 import Icon__Tax from '../Icons/Icon__Tax'
 import Icon__Asos from '../Icons/Icon__Asos'
 import Icon__Gift from '../Icons/Icon__Gift'
-import Fade from 'react-reveal/Fade';
 
 function Benefits() {
     return(
-        <Fade bottom>
         <div className="benefits__wrapper">
             <div className="benefits">
                 <div className="benefits__title">שימוש חובה לפני כל רכישה</div>
@@ -104,7 +102,6 @@ function Benefits() {
                 </div>
             </div>
         </div>
-        </Fade>
     )
 }
 

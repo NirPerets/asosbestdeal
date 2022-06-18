@@ -8,7 +8,6 @@ import Icon__Flag from '../Icons/Icon__Flag'
 import Icon__Money from '../Icons/Icon__Money'
 
 import Slider from "react-slick"
-import Fade from 'react-reveal/Fade';
 
 function Mockups() {
     const settings = {
@@ -22,7 +21,6 @@ function Mockups() {
     }
 
     return(
-        <Fade bottom>
         <div className="mockups__wrapper" id="mockups">
             <link rel="stylesheet" type="text/css" charset="UTF-8" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css" /> 
             <div className="mockups desktop__mockups">
@@ -129,7 +127,6 @@ function Mockups() {
                 </Slider>
             </div>
         </div>
-        </Fade>
     )
 }
 

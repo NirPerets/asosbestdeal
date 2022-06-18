@@ -1,11 +1,9 @@
 import Icon__Star from '../Icons/Icon__Star'
 import Icon__Arrowleft from '../Icons/Icon__Arrowleft'
-import Fade from 'react-reveal/Fade';
 
 function Hero() {
     return(
         <>
-            <Fade bottom>
             <div className="hero__wrapper">
                 <div className="hero">
                     <div className="benefits__grid">
@@ -57,7 +55,6 @@ function Hero() {
 
                 </div>
             </div>
-            </Fade>
         </>
     )
 }
