@@ -1,6 +1,7 @@
 const axios = require('axios');
 const res = require('express/lib/response');
 const fs = require('fs')
+const CloudflareBypasser = require('cloudflare-bypasser');
 
 const fetchProduct = async (url) => {
     let product = {};
@@ -64,11 +65,10 @@ const fetchCountry = async (country, ils) => {
 
 const getProductImage = async (url) => {
     let product = {}
-    let config = {
-        method: 'GET',
-        url: url,
-        body: null,
-        "headers": {
+    let cf = new CloudflareBypasser();
+    cf.request({
+        url: 'https://website.org',
+        headers: {
             "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
             "accept-language": "en-US,en;q=0.9",
             "cache-control": "max-age=0",
@@ -82,15 +82,11 @@ const getProductImage = async (url) => {
             "upgrade-insecure-requests": "1",
             "Referer": "",
             "Referrer-Policy": "strict-origin-when-cross-origin"
-          },
-    };
-
-    axios(config).then(async (response) => {
-        let data = response.data;
-        console.log(data);
-    }).catch((error) => {
-        console.log(error);
-    });
+        }
+      })
+      .then(res => {
+        console.log(res)
+      });
 
     return product
 }
