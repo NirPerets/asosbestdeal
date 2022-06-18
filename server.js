@@ -7,8 +7,6 @@ const path       = require('path')
 const cors       = require('cors')
 const urlBuilder   = require('./Functions/getUrls')
 const fetchProduct = require('./Functions/fetchProducts');
-const cheerio      = require('cheerio')
-const pretty       = require('pretty')
 
 const app = express();
 const port = process.env.PORT || 3000
@@ -17,18 +15,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors())
 
+
 app.use(express.static(path.resolve(__dirname, "client", "build")));
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(process.cwd(), 'client/build/index.html'))
 })
 
 app.post("/getImage", async (req,res) => {
-    const { data } = await axios.get(req.body.url)
-    const $ = cheerio.load(data);
-    var price = $('.current-price')
-    console.log($)
-    console.log(price)
-    /*
     const url = await urlBuilder.getCustomUrl(req.body.url,"COM") // Get UK Url
     console.log(url)
     const product = await fetchProduct.getProductImage(url);
@@ -36,7 +29,7 @@ app.post("/getImage", async (req,res) => {
     if(product == {}) 
        res.status(400).send({})
 
-    res.send('ok');*/
+    res.send('ok');
 })
 
 app.post('/bulkFetch', async(req,res) => {
