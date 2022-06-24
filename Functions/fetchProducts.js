@@ -1,7 +1,6 @@
 const axios = require('axios');
 const res = require('express/lib/response');
 const fs = require('fs')
-const CloudflareBypasser = require('cloudflare-bypasser');
 
 const fetchProduct = async (url) => {
     let product = {};
@@ -64,30 +63,15 @@ const fetchCountry = async (country, ils) => {
 }
 
 const getProductImage = async (url) => {
-    let product = {}
-    let cf = new CloudflareBypasser();
-    cf.request({
-        url: 'https://website.org',
-        headers: {
-            "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
-            "accept-language": "en-US,en;q=0.9",
-            "cache-control": "max-age=0",
-            "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"102\", \"Google Chrome\";v=\"102\"",
-            "sec-ch-ua-mobile": "?0",
-            "sec-ch-ua-platform": "\"macOS\"",
-            "sec-fetch-dest": "document",
-            "sec-fetch-mode": "navigate",
-            "sec-fetch-site": "cross-site",
-            "sec-fetch-user": "?1",
-            "upgrade-insecure-requests": "1",
-            "Referer": "",
-            "Referrer-Policy": "strict-origin-when-cross-origin"
-        }
-      })
-      .then(res => {
-        console.log(res)
-      });
-
+    let product = {};
+    await axios.get(url)
+    .then((res) =>  {
+        product.image = res.data.media.images[0]
+        product.name = res.data.variants[0].name
+    })       
+    .catch(err => {
+        if(err) {}
+    })
     return product
 }
 
