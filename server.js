@@ -47,3 +47,10 @@ function setIlsPrice() {
 cron.schedule('0 0 * * *', () => {
     setIlsPrice()
 })
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
